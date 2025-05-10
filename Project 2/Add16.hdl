@@ -1,0 +1,43 @@
+// 16-bit Adder using Half Adders
+CHIP ADD16 {
+    IN x[16], y[16];
+    OUT sum[16], carry;
+
+    PARTS:
+    // First bit (least significant bit)
+    HalfAdder(a=x[0], b=y[0], sum=sum[0], carry=carry0);
+
+    // Remaining bits
+    HalfAdder(a=x[1], b=y[1], sum=sum[1], carry=carry1);
+    HalfAdder(a=x[2], b=y[2], sum=sum[2], carry=carry2);
+    HalfAdder(a=x[3], b=y[3], sum=sum[3], carry=carry3);
+    HalfAdder(a=x[4], b=y[4], sum=sum[4], carry=carry4);
+    HalfAdder(a=x[5], b=y[5], sum=sum[5], carry=carry5);
+    HalfAdder(a=x[6], b=y[6], sum=sum[6], carry=carry6);
+    HalfAdder(a=x[7], b=y[7], sum=sum[7], carry=carry7);
+    HalfAdder(a=x[8], b=y[8], sum=sum[8], carry=carry8);
+    HalfAdder(a=x[9], b=y[9], sum=sum[9], carry=carry9);
+    HalfAdder(a=x[10], b=y[10], sum=sum[10], carry=carry10);
+    HalfAdder(a=x[11], b=y[11], sum=sum[11], carry=carry11);
+    HalfAdder(a=x[12], b=y[12], sum=sum[12], carry=carry12);
+    HalfAdder(a=x[13], b=y[13], sum=sum[13], carry=carry13);
+    HalfAdder(a=x[14], b=y[14], sum=sum[14], carry=carry14);
+    HalfAdder(a=x[15], b=y[15], sum=sum[15], carry=carry15);
+
+    // Final carry-out
+    Or(a=carry0, b=carry1, out=carry1or);
+    Or(a=carry2, b=carry1or, out=carry2or);
+    Or(a=carry3, b=carry2or, out=carry3or);
+    Or(a=carry4, b=carry3or, out=carry4or);
+    Or(a=carry5, b=carry4or, out=carry5or);
+    Or(a=carry6, b=carry5or, out=carry6or);
+    Or(a=carry7, b=carry6or, out=carry7or);
+    Or(a=carry8, b=carry7or, out=carry8or);
+    Or(a=carry9, b=carry8or, out=carry9or);
+    Or(a=carry10, b=carry9or, out=carry10or);
+    Or(a=carry11, b=carry10or, out=carry11or);
+    Or(a=carry12, b=carry11or, out=carry12or);
+    Or(a=carry13, b=carry12or, out=carry13or);
+    Or(a=carry14, b=carry13or, out=carry14or);
+    Or(a=carry15, b=carry14or, out=carry);
+}
